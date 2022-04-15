@@ -1,0 +1,392 @@
+{
+  "conjData": {
+    "idName": "Conjunto",
+    "metrics": {
+      "desktop": {
+        "ctr": 1.71,
+        "cpm": 23.89,
+        "cpa": 22.04,
+        "read": 0.77,
+        "vendas": 1.29
+      },
+      "android": {
+        "ctr": 1.64,
+        "cpm": 20.87,
+        "cpa": 18.88,
+        "read": 0.8,
+        "vendas": 1.92
+      },
+      "ios": {
+        "ctr": 1.76,
+        "cpm": 14.13,
+        "cpa": 21.31,
+        "read": 0.68,
+        "vendas": 2.59
+      },
+      "18-24": {
+        "ctr": 1.62,
+        "cpm": 23.4,
+        "cpa": 22.74,
+        "read": 0.68,
+        "vendas": 1.11
+      },
+      "25-34": {
+        "ctr": 1.63,
+        "cpm": 20.49,
+        "cpa": 15.38,
+        "read": 0.78,
+        "vendas": 2.61
+      },
+      "35-44": {
+        "ctr": 1.76,
+        "cpm": 15.12,
+        "cpa": 22.88,
+        "read": 0.82,
+        "vendas": 2.46
+      },
+      "45-54": {
+        "ctr": 1.8,
+        "cpm": 15.09,
+        "cpa": 22.33,
+        "read": 0.82,
+        "vendas": 2.37
+      },
+      "55-64": {
+        "ctr": 1.34,
+        "cpm": 16.14,
+        "cpa": 19.37,
+        "read": 0.74,
+        "vendas": 1.5
+      },
+      "65+": {
+        "ctr": 1.37,
+        "cpm": 21.35,
+        "cpa": 12.27,
+        "read": 0.72,
+        "vendas": 2.61
+      },
+      "feed-facebook": {
+        "ctr": 1.48,
+        "cpm": 21.74,
+        "cpa": 13.3,
+        "read": 0.71,
+        "vendas": 2.39
+      },
+      "feed-instagram": {
+        "ctr": 1.3,
+        "cpm": 17.6,
+        "cpa": 28.51,
+        "read": 0.68,
+        "vendas": 1.49
+      },
+      "reels": {
+        "ctr": 1.45,
+        "cpm": 18.78,
+        "cpa": 14.77,
+        "read": 0.69,
+        "vendas": 2.38
+      },
+      "stories": {
+        "ctr": 1.56,
+        "cpm": 17.61,
+        "cpa": 13.46,
+        "read": 0.73,
+        "vendas": 2.75
+      }
+    },
+    "mean": { "ctr": 1.57, "cpm": 18.94, "cpa": 19.02, "read": 0.74 }
+  },
+  "ads": [
+    {
+      "idName": "Anuncio 0",
+      "metrics": {
+        "desktop": {
+          "ctr": 1.42,
+          "cpm": 20.64,
+          "cpa": 20.88,
+          "read": 0.77,
+          "vendas": 1.25
+        },
+        "android": {
+          "ctr": 2.03,
+          "cpm": 23.37,
+          "cpa": 22.64,
+          "read": 0.74,
+          "vendas": 1.77
+        },
+        "ios": {
+          "ctr": 2,
+          "cpm": 12.77,
+          "cpa": 17.99,
+          "read": 0.74,
+          "vendas": 4.09
+        },
+        "18-24": {
+          "ctr": 1.26,
+          "cpm": 24.89,
+          "cpa": 19.45,
+          "read": 0.71,
+          "vendas": 0.99
+        },
+        "25-34": {
+          "ctr": 1.77,
+          "cpm": 20.94,
+          "cpa": 16.57,
+          "read": 0.79,
+          "vendas": 2.56
+        },
+        "35-44": {
+          "ctr": 1.85,
+          "cpm": 10.59,
+          "cpa": 21.32,
+          "read": 0.8,
+          "vendas": 3.15
+        },
+        "45-54": {
+          "ctr": 1.5,
+          "cpm": 20.87,
+          "cpa": 21.32,
+          "read": 0.87,
+          "vendas": 1.92
+        },
+        "55-64": {
+          "ctr": 1.18,
+          "cpm": 16.4,
+          "cpa": 18.23,
+          "read": 0.79,
+          "vendas": 1.44
+        },
+        "65+": {
+          "ctr": 1.52,
+          "cpm": 20.13,
+          "cpa": 15.94,
+          "read": 0.7,
+          "vendas": 2.55
+        },
+        "feed-facebook": {
+          "ctr": 1.55,
+          "cpm": 23.77,
+          "cpa": 14.41,
+          "read": 0.73,
+          "vendas": 2.24
+        },
+        "feed-instagram": {
+          "ctr": 1.08,
+          "cpm": 13.55,
+          "cpa": 26.52,
+          "read": 0.68,
+          "vendas": 1.52
+        },
+        "reels": {
+          "ctr": 1.65,
+          "cpm": 18.77,
+          "cpa": 10.29,
+          "read": 0.73,
+          "vendas": 2.74
+        },
+        "stories": {
+          "ctr": 1.52,
+          "cpm": 17.61,
+          "cpa": 11.21,
+          "read": 0.73,
+          "vendas": 2.89
+        }
+      },
+      "mean": { "ctr": 1.56, "cpm": 18.79, "cpa": 18.21, "read": 0.75 }
+    },
+    {
+      "idName": "Anuncio 1",
+      "metrics": {
+        "desktop": {
+          "ctr": 2.23,
+          "cpm": 26.7,
+          "cpa": 26.37,
+          "read": 0.84,
+          "vendas": 1.34
+        },
+        "android": {
+          "ctr": 1.66,
+          "cpm": 19.48,
+          "cpa": 12.99,
+          "read": 0.85,
+          "vendas": 2.41
+        },
+        "ios": {
+          "ctr": 1.75,
+          "cpm": 13.73,
+          "cpa": 25.82,
+          "read": 0.64,
+          "vendas": 1.84
+        },
+        "18-24": {
+          "ctr": 1.79,
+          "cpm": 19.45,
+          "cpa": 22.09,
+          "read": 0.66,
+          "vendas": 1.41
+        },
+        "25-34": {
+          "ctr": 1.32,
+          "cpm": 23.52,
+          "cpa": 10.9,
+          "read": 0.83,
+          "vendas": 2.5
+        },
+        "35-44": {
+          "ctr": 1.46,
+          "cpm": 20.25,
+          "cpa": 23.74,
+          "read": 0.85,
+          "vendas": 1.89
+        },
+        "45-54": {
+          "ctr": 1.9,
+          "cpm": 12.86,
+          "cpa": 21.09,
+          "read": 0.78,
+          "vendas": 2.57
+        },
+        "55-64": {
+          "ctr": 1.15,
+          "cpm": 15.14,
+          "cpa": 20.43,
+          "read": 0.71,
+          "vendas": 1.34
+        },
+        "65+": {
+          "ctr": 1.34,
+          "cpm": 22.7,
+          "cpa": 9.32,
+          "read": 0.72,
+          "vendas": 2.75
+        },
+        "feed-facebook": {
+          "ctr": 1.25,
+          "cpm": 22.63,
+          "cpa": 10.8,
+          "read": 0.74,
+          "vendas": 2.26
+        },
+        "feed-instagram": {
+          "ctr": 1.02,
+          "cpm": 19.46,
+          "cpa": 28.18,
+          "read": 0.7,
+          "vendas": 1.4
+        },
+        "reels": {
+          "ctr": 1.75,
+          "cpm": 14.57,
+          "cpa": 15.13,
+          "read": 0.7,
+          "vendas": 2.81
+        },
+        "stories": {
+          "ctr": 1.48,
+          "cpm": 19.43,
+          "cpa": 14.9,
+          "read": 0.71,
+          "vendas": 2.49
+        }
+      },
+      "mean": { "ctr": 1.55, "cpm": 19.22, "cpa": 18.6, "read": 0.75 }
+    },
+    {
+      "idName": "Anuncio 2",
+      "metrics": {
+        "desktop": {
+          "ctr": 1.48,
+          "cpm": 24.32,
+          "cpa": 18.88,
+          "read": 0.71,
+          "vendas": 1.28
+        },
+        "android": {
+          "ctr": 1.22,
+          "cpm": 19.76,
+          "cpa": 21.02,
+          "read": 0.8,
+          "vendas": 1.59
+        },
+        "ios": {
+          "ctr": 1.54,
+          "cpm": 15.89,
+          "cpa": 20.13,
+          "read": 0.67,
+          "vendas": 1.84
+        },
+        "18-24": {
+          "ctr": 1.81,
+          "cpm": 25.86,
+          "cpa": 26.69,
+          "read": 0.66,
+          "vendas": 0.92
+        },
+        "25-34": {
+          "ctr": 1.79,
+          "cpm": 17.02,
+          "cpa": 18.66,
+          "read": 0.71,
+          "vendas": 2.76
+        },
+        "35-44": {
+          "ctr": 1.96,
+          "cpm": 14.52,
+          "cpa": 23.58,
+          "read": 0.8,
+          "vendas": 2.35
+        },
+        "45-54": {
+          "ctr": 1.99,
+          "cpm": 11.54,
+          "cpa": 24.59,
+          "read": 0.81,
+          "vendas": 2.61
+        },
+        "55-64": {
+          "ctr": 1.69,
+          "cpm": 16.89,
+          "cpa": 19.45,
+          "read": 0.71,
+          "vendas": 1.73
+        },
+        "65+": {
+          "ctr": 1.24,
+          "cpm": 21.23,
+          "cpa": 11.56,
+          "read": 0.74,
+          "vendas": 2.53
+        },
+        "feed-facebook": {
+          "ctr": 1.65,
+          "cpm": 18.82,
+          "cpa": 14.68,
+          "read": 0.67,
+          "vendas": 2.66
+        },
+        "feed-instagram": {
+          "ctr": 1.8,
+          "cpm": 19.8,
+          "cpa": 30.82,
+          "read": 0.66,
+          "vendas": 1.55
+        },
+        "reels": {
+          "ctr": 0.96,
+          "cpm": 23,
+          "cpa": 18.88,
+          "read": 0.64,
+          "vendas": 1.6
+        },
+        "stories": {
+          "ctr": 1.67,
+          "cpm": 15.78,
+          "cpa": 14.27,
+          "read": 0.74,
+          "vendas": 2.88
+        }
+      },
+      "mean": { "ctr": 1.6, "cpm": 18.8, "cpa": 20.25, "read": 0.72 }
+    }
+  ]
+}
