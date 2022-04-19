@@ -60,16 +60,9 @@ function getScore(money = 0) {
     const rangeWithOscilatron = getOscilatron(impressões, range[1], {
       minOscilatron: 0.1,
       maxOscilatron: 2.5,
-      viewsStabilization: 50000,
+      viewsStabilization: 22000,
     }).generate()
-    console.log(
-      getOscilatron(impressões, range[1], {
-        minOscilatron: 0,
-        maxOscilatron: 2.5,
-        viewsStabilization: 50000,
-      }),
-      range[1]
-    )
+
     window.getOscilatron = getOscilatron
     debugger
     return [range[0], Math.max(rangeWithOscilatron, 0)]
