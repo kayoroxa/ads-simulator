@@ -5,8 +5,9 @@ import { ContainerAdsTemplate } from './styles-ads-template'
 
 interface IProps {
   data: I_AllMetrics
+  dataChange: (newTitle: string, indexAd?: number) => void
 }
-const AdsTemplate = ({ data }: IProps) => {
+const AdsTemplate = ({ data, dataChange }: IProps) => {
   const [show, setShow] = useState<'conj' | 'ads' | 'filter'>('conj')
 
   return (
@@ -29,7 +30,11 @@ const AdsTemplate = ({ data }: IProps) => {
           data.ads.map((item, index: number) => {
             return (
               <div key={index}>
-                <LineData data={[item.idName, ...Object.values(item.mean)]} />
+                <LineData
+                  title={item.idName}
+                  data={[...Object.values(item.mean)]}
+                  onChangeTitle={newTitle => dataChange(newTitle, index)}
+                />
               </div>
             )
           })}
@@ -52,6 +57,7 @@ const AdsTemplate = ({ data }: IProps) => {
             )
           })}
       </>
+      {/* <TableData /> */}
     </ContainerAdsTemplate>
   )
 }

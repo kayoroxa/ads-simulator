@@ -61,7 +61,7 @@ function getScore(money = 0) {
   return result
 }
 
-const getAllMetrics = (idName, money) => {
+export function getAllMetrics(idName, money = 20) {
   seedrandom(idName, { global: true })
 
   const metrics = Object.fromEntries(filters.map(f => [f, getScore(money)]))
@@ -94,7 +94,7 @@ function mean(data) {
   )
 }
 
-function meanJoin(ads, idName) {
+export function meanJoin(ads, idName) {
   const metrics = Object.fromEntries(
     filters.map(f => [f, mean([...ads.map(ad => ad.metrics[f])])])
   )
@@ -121,13 +121,14 @@ function createData({ conjName, nameAds }) {
   const ads = nameAds.map(name => getAllMetrics(name, 20))
 
   const newAds = ads.map((ad, id) => meanJoin([ad, P1], `Anuncio ${id}`))
+  const newConj = meanJoin(newAds, 'Conjunto')
 
   newAds.forEach(ad => {
     console.log(ad)
   })
 
   return {
-    conjData: meanJoin(newAds, 'Conjunto'),
+    conjData: newConj,
     ads: newAds,
   }
 }
