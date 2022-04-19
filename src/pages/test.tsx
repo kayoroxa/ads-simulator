@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import myConjKit from '../utils/useAdsData'
 
 export default function () {
-  const kit1 = myConjKit('caio', ['rocha'], 20)
+  const kit1 = myConjKit('pernambuco - int: loja', ['chamada agressiva'], 20)
   // createConj('conj', ['oi'])
 
-  const allConjKit = [kit1, myConjKit('bruno', ['anuncio 1'], 20)]
+  const allConjKit = [
+    kit1,
+    myConjKit('são paulo - int: loja', ['chamada passiva'], 20),
+  ]
 
   const [conjSelect, setConjSelect] = useState<false | number>(false)
 
