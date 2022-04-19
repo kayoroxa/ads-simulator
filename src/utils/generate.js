@@ -63,8 +63,6 @@ function getScore(money = 0) {
       viewsStabilization: 22000,
     }).generate()
 
-    window.getOscilatron = getOscilatron
-    debugger
     return [range[0], Math.max(rangeWithOscilatron, 0)]
   })
 
