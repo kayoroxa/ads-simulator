@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { Field, Form, Formik } from 'formik'
+import { useEffect, useState } from 'react'
 import myConjKit from '../utils/useAdsData'
 
 export default function () {
@@ -13,7 +14,6 @@ export default function () {
   const [conjSelect, setConjSelect] = useState<false | number>(false)
 
   const [inputValue, setInputValue] = useState('')
-  const inputNameNewConj = useRef
 
   // on key down
   useEffect(() => {
@@ -25,22 +25,16 @@ export default function () {
     })
   }, [])
 
+  function validate(values) {
+    const erros: any = {}
+    if (!values.name || values.name.length === 0) {
+      return (erros.name = 'Campo obrigatório')
+    }
+    return erros
+  }
+
   return (
     <div>
-      {/* {JSON.stringify(conj, null, 2)} */}
-      {/* {JSON.stringify(ads, null, 2)} */}
-      {/* <input
-        type="text"
-        onChange={e => setInputValue(e.target.value)}
-        onBlur={e => (e.target.value = '')}
-      />
-      <button
-        onClick={() => {
-          allConjKit.push(myConjKit('bruno', ['anuncio 1']))
-        }}
-      >
-        add conj
-      </button> */}
       {conjSelect === false && (
         <div>
           {allConjKit.map(({ conj, ads, addAd }, index) => (
@@ -59,12 +53,20 @@ export default function () {
               <p>{JSON.stringify(conj?.mean)}</p>
               <br />
               <p>{JSON.stringify(conj?.metrics)}</p>
-              <input
-                type="text"
-                onChange={e => setInputValue(e.target.value)}
-                onBlur={e => (e.target.value = '')}
+              <Formik
+                validate={validate}
+                onSubmit={values => {
+                  addAd(values.name)
+                }}
+                initialValues={{ name: '' }}
+                render={() => (
+                  <Form>
+                    <label>name</label>
+                    <Field name="name" type="text" />
+                    <button type="submit">add Ad</button>
+                  </Form>
+                )}
               />
-              <button onClick={() => addAd(inputValue)}>add Ad</button>
             </div>
           ))}
         </div>
@@ -73,14 +75,21 @@ export default function () {
       {conjSelect !== false && (
         <div>
           <button onClick={() => setConjSelect(false)}>voltar</button>
-          <input
-            type="text"
-            onChange={e => setInputValue(e.target.value)}
-            onBlur={e => (e.target.value = '')}
+          <Formik
+            validate={validate}
+            onSubmit={values => {
+              allConjKit[conjSelect].addAd(values.name)
+            }}
+            initialValues={{ name: '' }}
+            render={() => (
+              <Form>
+                <label>name</label>
+                <Field name="name" type="text" />
+                <button type="submit">add Ad</button>
+              </Form>
+            )}
           />
-          <button onClick={() => allConjKit[conjSelect].addAd(inputValue)}>
-            add ad
-          </button>
+
           {allConjKit[conjSelect].ads.map((ad, index) => (
             <div
               key={index}
