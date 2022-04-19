@@ -8,7 +8,12 @@ interface I_myConjKit {
   ads: I_Metrics[]
 }
 
-export default function myConjKit(name: string, ads?: string[]) {
+export default function myConjKit(
+  name: string,
+  ads?: string[],
+  moneyStart: number = 20
+) {
+  const [money, setMoney] = useState<number>(moneyStart)
   const [inside_conj, setInside_conj] = useState<I_Metrics>()
   const [inside_ads, setInside_Ads] = useState<I_Metrics[]>([])
 
@@ -27,18 +32,28 @@ export default function myConjKit(name: string, ads?: string[]) {
   }, [inside_conj, inside_ads])
 
   useEffect(() => {
+    if (ads) {
+      setInside_Ads(() => ads.map(name => getAllMetrics(name, money)))
+    }
+  }, [money])
+
+  useEffect(() => {
     setInside_conj(getAllMetrics(name))
     if (ads) {
-      setInside_Ads(prev => ads.map(name => getAllMetrics(name)))
+      setInside_Ads(prev => ads.map(name => getAllMetrics(name, money)))
     }
   }, [])
 
   return {
     addAd: (name: string) => {
-      setInside_Ads(prev => [...prev, getAllMetrics(name)])
+      setInside_Ads(prev => [...prev, getAllMetrics(name, money)])
     },
     conj: visible_conj,
     ads: visibleAds,
+    addMoney: (money: number) => {
+      setMoney(prev => prev + money)
+    },
+    money,
   }
 }
 

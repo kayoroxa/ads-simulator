@@ -1,5 +1,5 @@
 import seedrandom from 'seedrandom'
-// const getOscilatron = require('./ocilação-de-tempo')
+import getOscilatron from './ocilação-de-tempo'
 
 function round2(num) {
   return parseFloat(num.toFixed(2))
@@ -49,15 +49,42 @@ const filters = [
 ]
 
 function getScore(money = 0) {
-  const result = Object.fromEntries(
-    funil.map(f => [
-      f,
-      calRange(goodAndBad[f].bad, goodAndBad[f].good, Math.random()),
-    ])
-  )
+  let myFunil = funil.map(f => {
+    return [f, calRange(goodAndBad[f].bad, goodAndBad[f].good, Math.random())]
+  })
+
+  const myFunilWithOscilatron = myFunil.map(range => {
+    if (range[0] === 'cpm') return range
+    const cpm = myFunil.find(f => f[0] === 'cpm')[1]
+    const impressões = (money / cpm) * 1000
+    const rangeWithOscilatron = getOscilatron(impressões, range[1], {
+      minOscilatron: 0.1,
+      maxOscilatron: 2.5,
+      viewsStabilization: 50000,
+    }).generate()
+    console.log(
+      getOscilatron(impressões, range[1], {
+        minOscilatron: 0,
+        maxOscilatron: 2.5,
+        viewsStabilization: 50000,
+      }),
+      range[1]
+    )
+    window.getOscilatron = getOscilatron
+    debugger
+    return [range[0], Math.max(rangeWithOscilatron, 0)]
+  })
+
+  const result = Object.fromEntries(myFunilWithOscilatron)
+
   const views = (1000 / (result.cpm / money)) * (result.ctr / 100) // * result.read
-  // console.log(views)
-  result['vendas'] = views / result.cpa
+
+  if (money < result.cpa) result['cpa'] = 0
+
+  const vendas = Math.round(views / result.cpa)
+  result['vendas'] = result.cpa > 0 ? vendas : 0
+
+  result['impressões'] = (money / result.cpm) * 1000
   return result
 }
 

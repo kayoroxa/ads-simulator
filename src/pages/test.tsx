@@ -1,16 +1,27 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import myConjKit from '../utils/useAdsData'
 
 export default function () {
-  const kit1 = myConjKit('caio', ['rocha'])
+  const kit1 = myConjKit('caio', ['rocha'], 300000)
   // createConj('conj', ['oi'])
 
-  const allConjKit = [kit1, myConjKit('bruno', ['anuncio 1'])]
+  const allConjKit = [kit1, myConjKit('bruno', ['anuncio 1'], 300000)]
 
   const [conjSelect, setConjSelect] = useState<false | number>(false)
 
   const [inputValue, setInputValue] = useState('')
   const inputNameNewConj = useRef
+
+  // on key down
+  useEffect(() => {
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        allConjKit[0].addMoney(20)
+        allConjKit[1].addMoney(20)
+      }
+    })
+  }, [])
+
   return (
     <div>
       {/* {JSON.stringify(conj, null, 2)} */}
@@ -40,6 +51,8 @@ export default function () {
               >
                 {conj?.idName}
               </h1>
+              <p>{allConjKit[0].money}</p>
+              <br />
               <p>{JSON.stringify(conj?.mean)}</p>
               <br />
               <p>{JSON.stringify(conj?.metrics)}</p>
@@ -71,6 +84,8 @@ export default function () {
               style={{ margin: '30px', border: '1px solid black' }}
             >
               <h1>{ad?.idName}</h1>
+              <p>{allConjKit[0].money}</p>
+              <br />
               <p>{JSON.stringify(ad.mean)}</p>
               <br />
               <p>{JSON.stringify(ad.metrics)}</p>
