@@ -18,7 +18,7 @@ export default function () {
   // on key down
   useEffect(() => {
     document.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
+      if (e.key === 'Insert') {
         allConjKit[0].addMoney(20)
         allConjKit[1].addMoney(20)
       }
@@ -37,6 +37,35 @@ export default function () {
     <div>
       {conjSelect === false && (
         <div>
+          <Formik
+            onSubmit={values => {
+              console.log(values)
+            }}
+            validate={values => {
+              const errors: any = {}
+              if (!values.conjName || !values.adName) {
+                errors.name = 'Campo obrigatório'
+              }
+              return errors
+            }}
+            initialValues={{
+              conjName: '',
+              adName: '',
+            }}
+            render={() => (
+              <Form>
+                <label>Conj Name</label>
+                <Field
+                  name="conjName"
+                  type="text"
+                  placeholder="Nome do conjunto"
+                />
+                <label>Ad Name</label>
+                <Field name="adName" type="text" placeholder="Nome do ads" />
+                <button type="submit">Create new Conj</button>
+              </Form>
+            )}
+          />
           {allConjKit.map(({ conj, ads, addAd }, index) => (
             <div
               key={index}
