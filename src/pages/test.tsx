@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import myConjKit from '../utils/useAdsData'
 
 export default function () {
-  const kit1 = myConjKit('pernambuco - int: loja', ['chamada agressiva'], 20)
+  // const kit1 = myConjKit('pernambuco - int: loja', ['chamada agressiva'], 20)
   // createConj('conj', ['oi'])
 
   let allConjKit = []
@@ -13,21 +13,11 @@ export default function () {
   //   myConjKit('são paulo - int: loja', ['chamada passiva'], 20),
   // ])
 
-  const [startConjData, setStartConjData] = useState([
-    {
-      conj: 'desterro',
-      ad: 'chamada agressiva',
-    },
-    {
-      conj: 'igarassu',
-      ad: 'chamada passifica',
-    },
-  ])
-
-  function createMoreConj(name: string, ads?: string[]) {
-    allConjKit = [myConjKit(name, ads, 20)]
-    console.log(allConjKit)
-  }
+  const [startConjData, setStartConjData] = useState([])
+  // function createMoreConj(name: string, ads?: string[]) {
+  //   allConjKit = [myConjKit(name, ads, 20)]
+  //   console.log(allConjKit)
+  // }
 
   const [conjSelect, setConjSelect] = useState<false | number>(false)
 
@@ -136,7 +126,7 @@ function ConjElement({
   const { conj, ads, addAd, money, addMoney } = myConjKit(
     startConjName,
     [startAdName],
-    20
+    0
   )
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -192,8 +182,8 @@ function ConjElement({
         <p>{money}</p>
         <br />
         <p>{JSON.stringify(conj?.mean)}</p>
-        <br />
-        <p>{JSON.stringify(conj?.metrics)}</p>
+        {/* <br /> */}
+        {/* <p>{JSON.stringify(conj?.metrics)}</p> */}
         <Formik
           validate={validate}
           onSubmit={values => {

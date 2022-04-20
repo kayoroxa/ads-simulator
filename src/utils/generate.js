@@ -67,7 +67,7 @@ function getScore(money = 0) {
     return [range[0], Math.max(rangeWithOscilatron, 0)]
   })
 
-  const result = Object.fromEntries(myFunilWithOscilatron)
+  let result = Object.fromEntries(myFunilWithOscilatron)
 
   const views = (1000 / (result.cpm / money)) * (result.ctr / 100) // * result.read
 
@@ -77,6 +77,13 @@ function getScore(money = 0) {
   result['vendas'] = result.cpa > 0 ? vendas : 0
 
   result['impressões'] = (money / result.cpm) * 1000
+
+  if (money === 0) {
+    Object.keys(result).forEach(key => {
+      result[key] = 0
+    })
+  }
+
   result['gastado'] = money //(money / result.cpm) * 1000
   // result['cpm2'] = result.cpm //(money / result.cpm) * 1000
   // result['pCal'] = money / result.cpm //(money / result.cpm) * 1000
@@ -84,7 +91,7 @@ function getScore(money = 0) {
   return result
 }
 
-export function getAllMetrics(idName, money = 20) {
+export function getAllMetrics(idName, money = 0) {
   seedrandom(idName, { global: true })
 
   const metrics = Object.fromEntries(
