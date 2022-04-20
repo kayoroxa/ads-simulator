@@ -34,14 +34,6 @@ export default function () {
   const [inputValue, setInputValue] = useState('')
 
   // on key down
-  useEffect(() => {
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Insert') {
-        allConjKit[0].addMoney(20)
-        allConjKit[1].addMoney(20)
-      }
-    })
-  }, [])
 
   function validate(values) {
     const erros: any = {}
@@ -139,11 +131,26 @@ function ConjElement({
   index,
   conjSelect,
 }) {
-  const { conj, ads, addAd, money } = myConjKit(
+  const [paused, setPaused] = useState(false)
+
+  const { conj, ads, addAd, money, addMoney } = myConjKit(
     startConjName,
     [startAdName],
     20
   )
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Insert' && !paused) {
+        addMoney(20)
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [paused])
+
   if (conjSelect === index) {
     return (
       <>
@@ -201,9 +208,16 @@ function ConjElement({
             </Form>
           )}
         />
+        <button
+          onClick={() => {
+            setPaused(prev => !prev)
+          }}
+        >
+          {paused ? 'play' : 'pause'}
+        </button>
       </div>
     )
   } else {
-    return <></>
+    return null
   }
 }
