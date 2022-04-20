@@ -97,7 +97,7 @@ export default function () {
       {conjSelect !== false && (
         <div>
           <button onClick={() => setConjSelect(false)}>voltar</button>
-          <Formik
+          {/* <Formik
             validate={validate}
             onSubmit={values => {
               allConjKit[conjSelect].addAd(values.name)
@@ -110,7 +110,7 @@ export default function () {
                 <button type="submit">add Ad</button>
               </Form>
             )}
-          />
+          /> */}
         </div>
       )}
 
@@ -118,6 +118,7 @@ export default function () {
 
       {startConjData.map(({ conj, ad }, index) => (
         <ConjElement
+          key={index}
           startConjName={conj}
           startAdName={ad}
           conjSelect={conjSelect}
@@ -146,6 +147,20 @@ function ConjElement({
   if (conjSelect === index) {
     return (
       <>
+        <Formik
+          validate={validate}
+          onSubmit={values => {
+            addAd(values.name)
+          }}
+          initialValues={{ name: '' }}
+          render={() => (
+            <Form>
+              <label>name</label>
+              <Field name="name" type="text" />
+              <button type="submit">add Ad</button>
+            </Form>
+          )}
+        />
         {ads.map((ad, index) => (
           <div
             key={index}
