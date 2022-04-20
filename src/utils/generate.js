@@ -57,6 +57,7 @@ function getScore(money = 0) {
     if (range[0] === 'cpm') return range
     const cpm = myFunil.find(f => f[0] === 'cpm')[1]
     const impressões = (money / cpm) * 1000
+    // debugger
     const rangeWithOscilatron = getOscilatron(impressões, range[1], {
       minOscilatron: 0.1,
       maxOscilatron: 2.5,
@@ -76,13 +77,19 @@ function getScore(money = 0) {
   result['vendas'] = result.cpa > 0 ? vendas : 0
 
   result['impressões'] = (money / result.cpm) * 1000
+  result['gastado'] = money //(money / result.cpm) * 1000
+  // result['cpm2'] = result.cpm //(money / result.cpm) * 1000
+  // result['pCal'] = money / result.cpm //(money / result.cpm) * 1000
+
   return result
 }
 
 export function getAllMetrics(idName, money = 20) {
   seedrandom(idName, { global: true })
 
-  const metrics = Object.fromEntries(filters.map(f => [f, getScore(money)]))
+  const metrics = Object.fromEntries(
+    filters.map(f => [f, getScore(money / filters.length)])
+  )
   metrics['vendas'] = metrics
   // console.log(metrics2)
   // console.log(metrics)
