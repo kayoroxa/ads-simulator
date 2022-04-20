@@ -33,8 +33,8 @@ export default function myConjKit(
 
   useEffect(() => {
     if (ads) {
-      setInside_Ads(() =>
-        inside_ads.map(({ idName }) => getAllMetrics(idName, money))
+      setInside_Ads(prev =>
+        prev.map(({ idName }) => getAllMetrics(idName, money))
       )
     }
   }, [money])
