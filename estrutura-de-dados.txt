@@ -1,0 +1,27 @@
+[PUBLICO / CONJ]
+  oculto:
+    CPA / CTR / CPM / READ
+  mostrar:
+    ( soma / media ) dos anuncios
+
+[ANUNCIO]
+  misturar:
+    CPA / CTR / CPM / READ
+  separado:
+    IMPRESSÕES / GASTADO / VENDAS
+                   20   /    1
+  {
+    idName / seed,
+    // não pode variar tanto as metricas a ponto do cpa ficar impossivel dar uma 1 venda
+  }
+
+FILTROS:  ( gastado vai ser ultima metrica ) ( algum cpa vai ter q ser menos q o total ) ( nem q mude a seed )
+  insta --- facebook  --- storie:
+    CPA / CTR / CPM / READ  (random distribuido pela media)
+    GASTADO 
+      ( escolher 1 vencedor por todos os random com cpa menor q o custo total )
+      ( caso não tenha mude a SEED micro )
+      ( calcular os outros custos pelo q sobrou)
+    IMPRESSÕES / VENDAS ( sem misterio valor relativo ao gasto)
+
+
