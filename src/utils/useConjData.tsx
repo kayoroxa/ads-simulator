@@ -19,16 +19,21 @@ export default function useConjData(
   function generateAd(adID: string, BUDGET: number): I_ad_metrics {
     console.log('generateAd', BUDGET)
     const hide = getHideMetricsRandom(adID)
-    const hideMeanVisible = getMeanHideMetrics([hide, conj.hide])
+    // const hideMeanVisible = getMeanHideMetrics([hide, conj.hide])
 
     return {
       idName: adID,
       hide,
       visible: {
-        ...hideMeanVisible,
+        // ...hideMeanVisible,
+        CPA: 0,
+        CPM: _.meanBy([hide, conj.hide], 'CPM'),
+        CTR: 0,
+        READ: 0,
+
         CPC: 0,
         GASTADO: 0,
-        VENDAS: 0,
+        VENDAS: 20,
         IMPRESSIONS: 0,
         BUDGET,
       },
@@ -42,7 +47,7 @@ export default function useConjData(
         ...ad,
         visible: {
           ...ad.visible,
-          BUDGET: conj.visible.BUDGET / prev.length + 1,
+          BUDGET: conj.visible.BUDGET / (prev.length + 1),
         },
       }))
 
@@ -71,10 +76,22 @@ export default function useConjData(
       ...prev,
       visible: {
         ...getMeanHideMetrics([...ads.map(ad => ad.hide)]),
-        CPC: _.meanBy(ads, 'CPC'),
-        GASTADO: _.sumBy(ads, 'GASTADO'),
-        VENDAS: _.sumBy(ads, 'VENDAS'),
-        IMPRESSIONS: _.sumBy(ads, 'IMPRESSIONS'),
+        CPC: _.meanBy(
+          ads.map(v => v.visible),
+          'CPC'
+        ),
+        GASTADO: _.sumBy(
+          ads.map(v => v.visible),
+          'GASTADO'
+        ),
+        VENDAS: _.sumBy(
+          ads.map(v => v.visible),
+          'VENDAS'
+        ),
+        IMPRESSIONS: _.sumBy(
+          ads.map(v => v.visible),
+          'IMPRESSIONS'
+        ),
         BUDGET,
       },
     }))
