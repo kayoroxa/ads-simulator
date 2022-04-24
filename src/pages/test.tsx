@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import { useEffect, useState } from 'react'
-import myConjKit from '../utils/useAdsData'
+import useConjData from '../utils/useConjData'
 
 export default function () {
   // const kit1 = myConjKit('pernambuco - int: loja', ['chamada agressiva'], 20)
@@ -13,7 +13,16 @@ export default function () {
   //   myConjKit('são paulo - int: loja', ['chamada passiva'], 20),
   // ])
 
-  const [startConjData, setStartConjData] = useState([])
+  const [startConjData, setStartConjData] = useState([
+    {
+      conj: 'desterro',
+      ad: 'chamada agressiva',
+    },
+    {
+      conj: 'igarassu',
+      ad: 'chamada passifica',
+    },
+  ])
   // function createMoreConj(name: string, ads?: string[]) {
   //   allConjKit = [myConjKit(name, ads, 20)]
   //   console.log(allConjKit)
@@ -123,10 +132,10 @@ function ConjElement({
 }) {
   const [paused, setPaused] = useState(false)
 
-  const { conj, ads, addAd, money, addMoney } = myConjKit(
+  const { conj, ads, addAd, money, addMoney, pauseAd } = useConjData(
     startConjName,
     [startAdName],
-    0
+    20
   )
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -166,9 +175,16 @@ function ConjElement({
             <h1>{ad?.idName}</h1>
             <p>{money}</p>
             <br />
-            <p>{JSON.stringify(ad.mean)}</p>
+            <p>{JSON.stringify(ad.hide)}</p>
             <br />
-            <p>{JSON.stringify(ad.metrics)}</p>
+            <p>{JSON.stringify(ad.visible)}</p>
+            <button
+              onClick={() => {
+                pauseAd(ad.idName)
+              }}
+            >
+              {ad.active ? 'play' : 'pause'}
+            </button>
           </div>
         ))}
       </>
@@ -181,7 +197,7 @@ function ConjElement({
         </h1>
         <p>{money}</p>
         <br />
-        <p>{JSON.stringify(conj?.mean)}</p>
+        <p>{JSON.stringify(conj.visible)}</p>
         {/* <br /> */}
         {/* <p>{JSON.stringify(conj?.metrics)}</p> */}
         <Formik

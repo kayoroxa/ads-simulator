@@ -12,6 +12,7 @@ export default function useConjData(
 
   const [conj, setConj] = useState<I_ad_metrics>({
     idName,
+    active: true,
     hide: getHideMetricsRandom(idName),
     visible: null,
   })
@@ -24,6 +25,7 @@ export default function useConjData(
     return {
       idName: adID,
       hide,
+      active: true,
       visible: {
         // ...hideMeanVisible,
         CPA: 0,
@@ -33,7 +35,7 @@ export default function useConjData(
 
         CPC: 0,
         GASTADO: 0,
-        VENDAS: 20,
+        VENDAS: 0,
         IMPRESSIONS: 0,
         BUDGET,
       },
@@ -42,16 +44,32 @@ export default function useConjData(
 
   function addAd(adID: string) {
     setAds((prev: I_ad_metrics[]) => {
+      const newBudget = BUDGET / (prev.filter(v => v.active).length + 1)
+
       debugger
       const prevFixed = _.cloneDeep(prev).map(ad => ({
         ...ad,
         visible: {
           ...ad.visible,
-          BUDGET: conj.visible.BUDGET / (prev.length + 1),
+          BUDGET: newBudget,
         },
       }))
 
-      return [...prevFixed, generateAd(adID, BUDGET / (prev.length + 1))]
+      return [...prevFixed, generateAd(adID, newBudget)]
+    })
+  }
+
+  function updateAdsBudget() {
+    setAds(prev => {
+      const newBudget = BUDGET / (prev.filter(v => v.active).length + 1)
+
+      return prev.map(ad => ({
+        ...ad,
+        visible: {
+          ...ad.visible,
+          BUDGET: ad.active ? newBudget : 0,
+        },
+      }))
     })
   }
 
@@ -68,6 +86,33 @@ export default function useConjData(
         }
       })
       return newAds
+    })
+  }
+
+  function togglePauseAd(adID: string) {
+    setAds((prev: I_ad_metrics[]) => {
+      const newAds = prev.map(ad => {
+        if (ad.idName === adID) {
+          return {
+            ...ad,
+            active: !ad.active,
+          }
+        }
+        return ad
+      })
+
+      const newAdsFixedBudget = newAds.map(ad => {
+        const newBudget = BUDGET / newAds.filter(v => v.active).length
+        return {
+          ...ad,
+          visible: {
+            ...ad.visible,
+            BUDGET: ad.active ? newBudget : 0,
+          },
+        }
+      })
+
+      return newAdsFixedBudget
     })
   }
 
@@ -101,11 +146,13 @@ export default function useConjData(
   }, [])
 
   useEffect(() => {
+    // updateAdsBudget()
     updateVisibleConj()
   }, [ads])
 
   return {
     addAd,
+    pauseAd: togglePauseAd,
     ads,
     conj,
     money: 20,

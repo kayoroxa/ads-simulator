@@ -62,6 +62,7 @@ export interface I_visible_metrics {
 
 export interface I_ad_metrics {
   idName: string
+  active: boolean
   hide: I_hide_metrics
   visible: I_visible_metrics
 }
