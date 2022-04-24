@@ -1,0 +1,39 @@
+{
+  'publico / conj': {
+    idName: 'userChoice',
+    oculto: {
+      CPA: 'random_metrics',
+      CPC: 'random_metrics',
+      CPM: 'random_metrics',
+      READ: 'random_metrics',
+    },
+    visible: {
+      CPA: 'adsMean',
+      CPC: 'adsMean',
+      CPM: 'adsMean',
+      READ: 'adsMean',
+      GASTADO: 'adsSum',
+      VENDAS: 'adsSum',
+      IMPRESSIONS: 'adsSum',
+    },
+  },
+
+  ad: {
+    idName: 'userChoice',
+    oculto: {
+      CPA: 'random_metrics',
+      CPC: 'random_metrics',
+      CPM: 'random_metrics',
+      READ: 'random_metrics',
+    },
+    visible: {
+      CPA: 'mean(hide_CONJ_CPA, hide_THIS_CPA)',
+      CPC: 'mean(hide_CONJ_CPC, hide_THIS_CPC)',
+      CPM: 'mean(hide_CONJ_CPM, hide_THIS_CPM)',
+      READ: 'mean(hide_CONJ_READ, hide_THIS_READ)',
+      GASTADO: 'userChoice',
+      VENDAS: 'Math(CPA, GASTADO)',
+      IMPRESSIONS: 'Math(CPC, GASTADO)',
+    },
+  },
+}
