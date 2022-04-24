@@ -17,6 +17,7 @@ export default function useConjData(
   })
 
   function generateAd(adID: string, BUDGET: number): I_ad_metrics {
+    console.log('generateAd', BUDGET)
     const hide = getHideMetricsRandom(adID)
     const hideMeanVisible = getMeanHideMetrics([hide, conj.hide])
 
@@ -36,15 +37,16 @@ export default function useConjData(
 
   function addAd(adID: string) {
     setAds((prev: I_ad_metrics[]) => {
+      debugger
       const prevFixed = _.cloneDeep(prev).map(ad => ({
         ...ad,
         visible: {
           ...ad.visible,
-          BUDGET: conj.visible.BUDGET / prev.length,
+          BUDGET: conj.visible.BUDGET / prev.length + 1,
         },
       }))
 
-      return [...prevFixed, generateAd(adID, conj.visible.BUDGET / prev.length)]
+      return [...prevFixed, generateAd(adID, BUDGET / (prev.length + 1))]
     })
   }
 
@@ -89,5 +91,7 @@ export default function useConjData(
     addAd,
     ads,
     conj,
+    money: 20,
+    addMoney: (money: number) => {},
   }
 }
