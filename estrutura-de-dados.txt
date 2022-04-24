@@ -9,10 +9,10 @@
     CPA / CTR / CPM / READ
   separado:
     IMPRESSÕES / GASTADO / VENDAS
-                   20   /    1
+                   20   /    1  
   {
     idName / seed,
-    // não pode variar tanto as metricas a ponto do cpa ficar impossivel dar uma 1 venda
+    // não pode variar tanto as metricas a ponto do cpa ficar impossivel dar uma 1 venda, provavelmente vai ter que fazer metrica do dia... pq ai dá pra saber se fez mais 1 venda ou n, e dps junta como uma media pra não juntar historico grande, ou seja só vai ter a media dos dias anteriores e dia atual q rapidamentevai ser apagado
   }
 
 FILTROS:  ( gastado vai ser ultima metrica ) ( algum cpa vai ter q ser menos q o total ) ( nem q mude a seed )
