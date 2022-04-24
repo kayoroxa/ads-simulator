@@ -16,24 +16,51 @@ export default function useConjData(
     visible: null,
   })
 
+  function generateAd(adID: string, BUDGET: number): I_ad_metrics {
+    const hide = getHideMetricsRandom(adID)
+    const hideMeanVisible = getMeanHideMetrics([hide, conj.hide])
+
+    return {
+      idName: adID,
+      hide,
+      visible: {
+        ...hideMeanVisible,
+        CPC: 0,
+        GASTADO: 0,
+        VENDAS: 0,
+        IMPRESSIONS: 0,
+        BUDGET,
+      },
+    }
+  }
+
   function addAd(adID: string) {
     setAds((prev: I_ad_metrics[]) => {
-      const hide = getHideMetricsRandom(adID)
-      return [
-        ...prev,
-        {
-          idName: adID,
-          hide,
-          visible: {
-            ...getMeanHideMetrics([hide, conj.hide]),
-            CPC: 0,
-            GASTADO: 0,
-            VENDAS: 0,
-            IMPRESSIONS: 0,
-            BUDGET: 0,
-          },
+      const prevFixed = _.cloneDeep(prev).map(ad => ({
+        ...ad,
+        visible: {
+          ...ad.visible,
+          BUDGET: conj.visible.BUDGET / prev.length,
         },
-      ]
+      }))
+
+      return [...prevFixed, generateAd(adID, conj.visible.BUDGET / prev.length)]
+    })
+  }
+
+  function nextDay() {
+    setAds((prev: I_ad_metrics[]) => {
+      // const todayAd =
+      const newAds = prev.map(yesterdayAd => {
+        const newGastado = yesterdayAd.visible.GASTADO + BUDGET
+
+        return {
+          ...yesterdayAd,
+          GASTADO: newGastado,
+          IMPRESSIONS: (newGastado / yesterdayAd.visible.CPM) * 1000,
+        }
+      })
+      return newAds
     })
   }
 
